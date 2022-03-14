@@ -9,12 +9,17 @@ part OnBoarding referred to [verichenn/dydx-v3-go](https://github.com/verichenn/
 go-dydx is a go client library for dYdX, [dYdX API Document](https://docs.dydx.exchange).
 
 ## Support
-- [ ] private/accounts
-- [ ] private/positions
-- [ ] private/orders (get, post, delete)
-- [ ] public/markets
-- [ ] public/orderbook
-- [ ] public/trades
+- [x] private/accounts
+- [x] private/positions
+- [x] private/orders (get, post, delete)
+- [x] pricate/fast-withdrawals
+- [x] pricate/fills
+- [x] pricate/funding
+- [x] pricate/historical-pnl
+- [x] public/markets
+- [x] public/orderbook
+- [x] public/trades
+- [x] public/historical-funding
 
 ## Usege
 ```go
