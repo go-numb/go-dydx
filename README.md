@@ -12,10 +12,10 @@ go-dydx is a go client library for dYdX, [dYdX API Document](https://docs.dydx.e
 - [x] private/accounts
 - [x] private/positions
 - [x] private/orders (get, post, delete)
-- [x] pricate/fast-withdrawals
-- [x] pricate/fills
-- [x] pricate/funding
-- [x] pricate/historical-pnl
+- [x] private/fast-withdrawals
+- [x] private/fills
+- [x] private/funding
+- [x] private/historical-pnl
 - [x] public/markets
 - [x] public/orderbook
 - [x] public/trades
