@@ -18,7 +18,7 @@ const (
 	StarkKey        = ""
 )
 
-var userID int64 = 168805
+var userID int64 = 1
 var options = types.Options{
 	Host:                      types.ApiHostMainnet,
 	StarkPublicKey:            "",
