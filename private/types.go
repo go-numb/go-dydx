@@ -220,21 +220,35 @@ type HistoricalPnLParam struct {
 	EffectiveAtOrAfter  string `json:"effectiveAtOrAfter,omitempty"`
 }
 
-type TradingRewardsResponse struct {
-	TradingRewardss []TradingRewards `json:"historicalPnl"`
-}
+type TradingRewardsResponse TradingReward
 
-type TradingRewards struct {
-	AccountID    string    `json:"accountId"`
-	Equity       string    `json:"equity"`
-	TotalPnl     string    `json:"totalPnl"`
-	NetTransfers string    `json:"netTransfers"`
-	CreatedAt    time.Time `json:"createdAt"`
+type TradingReward struct {
+	Epoch      int       `json:"epoch"`
+	EpochStart time.Time `json:"epochStart"`
+	EpochEnd   time.Time `json:"epochEnd"`
+	Fees       struct {
+		FeesPaid      string `json:"feesPaid"`
+		TotalFeesPaid string `json:"totalFeesPaid"`
+	} `json:"fees"`
+	OpenInterest struct {
+		AverageOpenInterest      string `json:"averageOpenInterest"`
+		TotalAverageOpenInterest string `json:"totalAverageOpenInterest"`
+	} `json:"openInterest"`
+	StakedDYDX struct {
+		AverageStakedDYDX          string `json:"averageStakedDYDX"`
+		AverageStakedDYDXWithFloor string `json:"averageStakedDYDXWithFloor"`
+		TotalAverageStakedDYDX     string `json:"totalAverageStakedDYDX"`
+	} `json:"stakedDYDX"`
+	Weight struct {
+		Weight      string `json:"weight"`
+		TotalWeight string `json:"totalWeight"`
+	} `json:"weight"`
+	TotalRewards     string `json:"totalRewards"`
+	EstimatedRewards string `json:"estimatedRewards"`
 }
 
 type TradingRewardsParam struct {
-	EffectiveBeforeOrAt string `json:"effectiveBeforeOrAt,omitempty"`
-	EffectiveAtOrAfter  string `json:"effectiveAtOrAfter,omitempty"`
+	Epoch int `json:"epoch,omitempty"`
 }
 
 func (o OrderQueryParam) ToParams() url.Values {

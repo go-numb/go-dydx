@@ -16,7 +16,7 @@ type Public struct {
 }
 
 type MarketsResponse struct {
-	Markets Market `json:"markets"`
+	Markets map[string]Market `json:"markets"`
 }
 
 type Market struct {

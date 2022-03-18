@@ -24,7 +24,7 @@ func (p *Public) GetMarkets(marketID string) (*MarketsResponse, error) {
 	return m, nil
 }
 
-func (p *Public) GetTrades(param *HistoricalFundingsParam) (*Trade, error) {
+func (p *Public) GetTrades(param *TradesParam) (*TradesResponse, error) {
 	u, err := query.Values(param)
 	if err != nil {
 		return nil, errors.New("error when changed struct to query")
@@ -34,7 +34,7 @@ func (p *Public) GetTrades(param *HistoricalFundingsParam) (*Trade, error) {
 	if err != nil {
 		return nil, err
 	}
-	t := &Trade{}
+	t := &TradesResponse{}
 	if err := json.Unmarshal(res, t); err != nil {
 		return nil, err
 	}
