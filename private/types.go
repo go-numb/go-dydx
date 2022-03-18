@@ -220,6 +220,23 @@ type HistoricalPnLParam struct {
 	EffectiveAtOrAfter  string `json:"effectiveAtOrAfter,omitempty"`
 }
 
+type TradingRewardsResponse struct {
+	TradingRewardss []TradingRewards `json:"historicalPnl"`
+}
+
+type TradingRewards struct {
+	AccountID    string    `json:"accountId"`
+	Equity       string    `json:"equity"`
+	TotalPnl     string    `json:"totalPnl"`
+	NetTransfers string    `json:"netTransfers"`
+	CreatedAt    time.Time `json:"createdAt"`
+}
+
+type TradingRewardsParam struct {
+	EffectiveBeforeOrAt string `json:"effectiveBeforeOrAt,omitempty"`
+	EffectiveAtOrAfter  string `json:"effectiveAtOrAfter,omitempty"`
+}
+
 func (o OrderQueryParam) ToParams() url.Values {
 	params := url.Values{}
 	if o.Market != "" {

@@ -198,3 +198,17 @@ func (p *Private) GetHistoricalPnL(param *HistoricalPnLParam) (*HistoricalPnLRes
 	}
 	return result, nil
 }
+
+func (p *Private) GetTradingRewards(param *TradingRewardsParam) (*TradingRewardsResponse, error) {
+	u := helpers.ToValues(param)
+	res, err := p.get("rewards/weight", u)
+	if err != nil {
+		return nil, err
+	}
+
+	result := &TradingRewardsResponse{}
+	if err := json.Unmarshal(res, result); err != nil {
+		return nil, errors.New("json parser error")
+	}
+	return result, nil
+}
