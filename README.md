@@ -22,6 +22,7 @@ go-dydx is a go client library for dYdX, [dYdX API Document](https://docs.dydx.e
 - [x] public/historical-funding
 
 ## Usage
+### Rest
 ```go
 package main
 
@@ -95,6 +96,59 @@ func main() {
 	fmt.Println(client.Private.RateLimit.ToNumber())
 }
 
+```
+
+### Websocket
+```go
+
+package main
+
+import (
+	"context"
+	"fmt"
+	"testing"
+	"time"
+
+	"github.com/go-numb/go-dydx"
+	"github.com/go-numb/go-dydx/public"
+	"github.com/go-numb/go-dydx/realtime"
+)
+
+
+var userID int64 = 11111
+var options = types.Options{
+	Host:                      types.ApiHostMainnet,
+	StarkPublicKey:            "<please check Google Chrome Developer tool -> application starkkey>",
+	StarkPrivateKey:           "<please check Google Chrome Developer tool -> application starkkey>",
+	StarkPublicKeyYCoordinate: "<please check Google Chrome Developer tool -> application starkkey>",
+	DefaultEthereumAddress:    EthereumAddress,
+	ApiKeyCredentials: &types.ApiKeyCredentials{
+		Key:        "<please check Google Chrome Developer tool -> application apikey>",
+		Secret:     "<please check Google Chrome Developer tool -> application secret>",
+		Passphrase: "<please check Google Chrome Developer tool -> application passphrase>",
+	},
+}
+func main() {
+	client := dydx.New(options)
+
+	account, err := client.Private.GetAccount(client.Private.DefaultAddress)
+	assert.NoError(t, err)
+
+	fmt.Println(account)
+
+	parent := context.Background()
+	ctx, cancel := context.WithCancel(parent)
+
+	r := make(chan realtime.Response)
+
+	// with Private
+	go realtime.Connect(ctx, r, []string{realtime.ACCOUNT}, []string{}, client.Private, nil)
+	// or without Private
+	go realtime.Connect(ctx, r, []string{realtime.TRADES}, []string{"BTC-USD"}, nil, nil)
+
+
+	cancel()
+}
 ```
 
 ## Author
