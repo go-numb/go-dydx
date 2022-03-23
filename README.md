@@ -106,8 +106,8 @@ package main
 import (
 	"context"
 	"fmt"
-	"testing"
 	"time"
+	"log"
 
 	"github.com/go-numb/go-dydx"
 	"github.com/go-numb/go-dydx/public"
@@ -132,7 +132,9 @@ func main() {
 	client := dydx.New(options)
 
 	account, err := client.Private.GetAccount(client.Private.DefaultAddress)
-	assert.NoError(t, err)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	fmt.Println(account)
 
@@ -146,7 +148,25 @@ func main() {
 	// or without Private
 	go realtime.Connect(ctx, r, []string{realtime.TRADES}, []string{"BTC-USD"}, nil, nil)
 
+	for {
+		select {
+		case v := <-r:
+			switch v.Channel {
+			case realtime.ACCOUNT:
+				fmt.Println(v.Account)
+			case realtime.TRADES:
+				fmt.Println(v.Trades)
+			case realtime.ERROR:
+				log.Println(v.Results)
+				goto EXIT
+			case realtime.UNDEFINED:
+				log.Println(v.Results)
+			}
 
+		}
+	}
+
+EXIT:
 	cancel()
 }
 ```
