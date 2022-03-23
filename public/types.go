@@ -1,6 +1,7 @@
 package public
 
 import (
+	"encoding/json"
 	"log"
 	"time"
 
@@ -61,6 +62,38 @@ type TradesParam struct {
 	MarketID           string `url:"-"`
 	Limit              int    `url:"limit,omitempty"`
 	StartingBeforeOrAt string `url:"startingBeforeOrAt,omitempty"`
+}
+
+type OrderbookResponse struct {
+	Offset string `json:"offset"`
+	Bids   []Book `json:"bids"`
+	Asks   []Book `json:"asks"`
+}
+
+type Book struct {
+	Price  string
+	Size   string
+	Offset string
+}
+
+func (p *Book) UnmarshalJSON(data []byte) error {
+	var s []string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+
+	l := len(s)
+	switch l {
+	case 2:
+		p.Price = s[0]
+		p.Size = s[1]
+	case 3:
+		p.Price = s[0]
+		p.Size = s[1]
+		p.Offset = s[2]
+	}
+
+	return nil
 }
 
 type HistoricalFundingsResponse struct {
