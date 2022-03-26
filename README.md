@@ -1,4 +1,5 @@
 # go-dydx
+![dYdX exhange DEX](https://github.com/go-numb/go-dydx/blob/master/types/icon.png)
 
 dYdX exchange API version3.
 
@@ -9,6 +10,7 @@ part OnBoarding referred to [verichenn/dydx-v3-go](https://github.com/verichenn/
 go-dydx is a go client library for dYdX, [dYdX API Document](https://docs.dydx.exchange).
 
 ## Support
+- [x] private/websocket, public/websocket
 - [x] private/accounts
 - [x] private/positions
 - [x] private/orders (get, post, delete)
