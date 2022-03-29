@@ -28,11 +28,12 @@ func TestGetTrades(t *testing.T) {
 
 func TestGetCandles(t *testing.T) {
 	client := dydx.New(options)
+	start := -1*time.Minute - 24*time.Hour
 	res, err := client.Public.GetCandles(&public.CandlesParam{
 		Market:     "BTC-USD",
-		Resolution: "1MIN",
-		FromISO:    time.Now().UTC().Add(-1*time.Minute - 24*time.Hour).Format(time.RFC3339),
-		ToISO:      time.Now().UTC().Add(-24 * time.Hour).Format(time.RFC3339),
+		Resolution: "5MINS",
+		FromISO:    time.Now().UTC().Add(start).Format(time.RFC3339),
+		ToISO:      time.Now().UTC().Add(start + time.Duration(5*100)*time.Minute).Format(time.RFC3339),
 	})
 
 	assert.NoError(t, err)

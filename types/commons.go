@@ -70,7 +70,7 @@ const (
 )
 
 const (
-	Resolution1D     = "1D"
+	Resolution1D     = "1DAY"
 	Resolution4HOURS = "4HOURS"
 	Resolution1HOUR  = "1HOUR"
 	Resolution30MINS = "30MINS"
