@@ -11,6 +11,19 @@ import (
 	"github.com/yanue/starkex"
 )
 
+func (p *Private) GetUsers() (*UsersResponse, error) {
+	res, err := p.get("users", nil)
+	if err != nil {
+		return nil, err
+	}
+
+	result := &UsersResponse{}
+	if err := json.Unmarshal(res, result); err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
 func (p *Private) GetAccount(ethereumAddress string) (*AccountResponse, error) {
 	if ethereumAddress == "" {
 		ethereumAddress = p.DefaultAddress

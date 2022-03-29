@@ -11,6 +11,7 @@ go-dydx is a go client library for dYdX, [dYdX API Document](https://docs.dydx.e
 
 ## Support
 - [x] private/websocket, public/websocket
+- [x] private/users
 - [x] private/accounts
 - [x] private/positions
 - [x] private/orders (get, post, delete)
