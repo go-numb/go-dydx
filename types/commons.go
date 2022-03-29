@@ -69,6 +69,16 @@ const (
 	OrderStatusUntriggered = "UNTRIGGERED"
 )
 
+const (
+	Resolution1D     = "1D"
+	Resolution4HOURS = "4HOURS"
+	Resolution1HOUR  = "1HOUR"
+	Resolution30MINS = "30MINS"
+	Resolution15MINS = "15MINS"
+	Resolution5MINS  = "5MINS"
+	Resolution1MIN   = "1MIN"
+)
+
 type Options struct {
 	NetworkId              int
 	Host                   string

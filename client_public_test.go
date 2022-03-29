@@ -3,6 +3,7 @@ package dydx_test
 import (
 	"fmt"
 	"testing"
+	"time"
 
 	"github.com/go-numb/go-dydx"
 	"github.com/go-numb/go-dydx/public"
@@ -30,9 +31,12 @@ func TestGetCandles(t *testing.T) {
 	res, err := client.Public.GetCandles(&public.CandlesParam{
 		Market:     "BTC-USD",
 		Resolution: "1MIN",
+		FromISO:    time.Now().UTC().Add(-1*time.Minute - 24*time.Hour).Format(time.RFC3339),
+		ToISO:      time.Now().UTC().Add(-24 * time.Hour).Format(time.RFC3339),
 	})
+
 	assert.NoError(t, err)
-	fmt.Printf("%v", res)
+	fmt.Printf("%v, lenght: %d\n", res, len(res.Candles))
 }
 func TestGetHistoricalFunding(t *testing.T) {
 	client := dydx.New(options)

@@ -116,12 +116,12 @@ type Candle struct {
 }
 
 type CandlesParam struct {
-	Market     string `json:"market"`
-	Resolution string `json:"resolution,omitempty"`
-	FromISO    string `json:"from_iso,omitempty"`
-	ToISO      string `json:"to_iso,omitempty"`
+	Market     string `url:"-"`
+	Resolution string `url:"resolution,omitempty"`
+	FromISO    string `url:"fromISO,omitempty"`
+	ToISO      string `url:"toISO,omitempty"`
 	// Max:100
-	Limit int `json:"limit,omitempty"`
+	Limit int `url:"limit,omitempty"`
 }
 
 type HistoricalFundingsResponse struct {
@@ -136,6 +136,6 @@ type HistoricalFunding struct {
 }
 
 type HistoricalFundingsParam struct {
-	Market              string `json:"-"`
-	EffectiveBeforeOrAt string `json:"effectiveBeforeOrAt,omitempty"`
+	Market              string `url:"-"`
+	EffectiveBeforeOrAt string `url:"effectiveBeforeOrAt,omitempty"`
 }
