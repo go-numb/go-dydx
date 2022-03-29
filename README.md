@@ -22,6 +22,7 @@ go-dydx is a go client library for dYdX, [dYdX API Document](https://docs.dydx.e
 - [x] public/markets
 - [x] public/orderbook
 - [x] public/trades
+- [x] public/candles
 - [x] public/historical-funding
 
 ## Usage
