@@ -11,7 +11,9 @@ import (
 
 func (p *Public) GetMarkets(marketID string) (*MarketsResponse, error) {
 	u := url.Values{}
-	u.Add("market", marketID)
+	if marketID != "" {
+		u.Add("market", marketID)
+	}
 	res, err := p.get("markets", u)
 	if err != nil {
 		return nil, err

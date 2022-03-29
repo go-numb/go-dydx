@@ -6,15 +6,20 @@ import (
 	"time"
 
 	"github.com/go-numb/go-dydx"
+	"github.com/go-numb/go-dydx/helpers"
 	"github.com/go-numb/go-dydx/public"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestGetMarkets(t *testing.T) {
 	client := dydx.New(options)
-	res, err := client.Public.GetMarkets("BTC-USD")
+	res, err := client.Public.GetMarkets("")
 	assert.NoError(t, err)
-	fmt.Printf("%v", res)
+
+	for k, v := range res.Markets {
+		fmt.Printf("max position - %v\n", v.MaxPositionSize)
+		fmt.Printf("%v - %#v\n", k, helpers.ToFloat(v.MinOrderSize)*helpers.ToFloat(v.IndexPrice))
+	}
 }
 
 func TestGetTrades(t *testing.T) {
@@ -28,12 +33,13 @@ func TestGetTrades(t *testing.T) {
 
 func TestGetCandles(t *testing.T) {
 	client := dydx.New(options)
-	start := -1*time.Minute - 24*time.Hour
+	start := -100 * 24 * time.Hour
 	res, err := client.Public.GetCandles(&public.CandlesParam{
 		Market:     "BTC-USD",
 		Resolution: "5MINS",
 		FromISO:    time.Now().UTC().Add(start).Format(time.RFC3339),
 		ToISO:      time.Now().UTC().Add(start + time.Duration(5*100)*time.Minute).Format(time.RFC3339),
+		Limit:      100,
 	})
 
 	assert.NoError(t, err)
