@@ -25,10 +25,19 @@ func TestGetTrades(t *testing.T) {
 	fmt.Printf("%v", res)
 }
 
+func TestGetCandles(t *testing.T) {
+	client := dydx.New(options)
+	res, err := client.Public.GetCandles(&public.CandlesParam{
+		Market:     "BTC-USD",
+		Resolution: "1MIN",
+	})
+	assert.NoError(t, err)
+	fmt.Printf("%v", res)
+}
 func TestGetHistoricalFunding(t *testing.T) {
 	client := dydx.New(options)
 	res, err := client.Public.GetHistoricalFunding(&public.HistoricalFundingsParam{
-		MarketID: "BTC-USD",
+		Market: "BTC-USD",
 	})
 	assert.NoError(t, err)
 	fmt.Printf("%v", res)

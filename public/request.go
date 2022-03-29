@@ -42,13 +42,32 @@ func (p *Public) GetTrades(param *TradesParam) (*TradesResponse, error) {
 	return t, nil
 }
 
+// GetCandles response head of the array is currently
+func (p *Public) GetCandles(param *CandlesParam) (*CandlesResponse, error) {
+	u, err := query.Values(param)
+	if err != nil {
+		return nil, errors.New("error when changed struct to query")
+	}
+
+	res, err := p.get(fmt.Sprintf("candles/%s", param.Market), u)
+	if err != nil {
+		return nil, err
+	}
+	t := &CandlesResponse{}
+	if err := json.Unmarshal(res, t); err != nil {
+		return nil, err
+	}
+
+	return t, nil
+}
+
 func (p *Public) GetHistoricalFunding(param *HistoricalFundingsParam) (*HistoricalFundingsResponse, error) {
 	u, err := query.Values(param)
 	if err != nil {
 		return nil, errors.New("error when changed struct to query")
 	}
 
-	res, err := p.get(fmt.Sprintf("historical-funding/%s", param.MarketID), u)
+	res, err := p.get(fmt.Sprintf("historical-funding/%s", param.Market), u)
 	if err != nil {
 		return nil, err
 	}

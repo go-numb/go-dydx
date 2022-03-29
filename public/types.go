@@ -96,18 +96,46 @@ func (p *Book) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+type CandlesResponse struct {
+	Candles []Candle `json:"candles"`
+}
+
+type Candle struct {
+	Market               string    `json:"market"`
+	Resolution           string    `json:"resolution"`
+	Low                  string    `json:"low"`
+	High                 string    `json:"high"`
+	Open                 string    `json:"open"`
+	Close                string    `json:"close"`
+	BaseTokenVolume      string    `json:"baseTokenVolume"`
+	Trades               string    `json:"trades"`
+	UsdVolume            string    `json:"usdVolume"`
+	StartingOpenInterest string    `json:"startingOpenInterest"`
+	StartedAt            time.Time `json:"startedAt"`
+	UpdatedAt            time.Time `json:"updatedAt"`
+}
+
+type CandlesParam struct {
+	Market     string `json:"market"`
+	Resolution string `json:"resolution,omitempty"`
+	FromISO    string `json:"from_iso,omitempty"`
+	ToISO      string `json:"to_iso,omitempty"`
+	// Max:100
+	Limit int `json:"limit,omitempty"`
+}
+
 type HistoricalFundingsResponse struct {
 	HistoricalFundings []HistoricalFunding `json:"historicalFunding"`
 }
 
 type HistoricalFunding struct {
-	Market      string    `json:"market"`
+	Market      string    `json:"-"`
 	Rate        string    `json:"rate"`
 	Price       string    `json:"price"`
 	EffectiveAt time.Time `json:"effectiveAt"`
 }
 
 type HistoricalFundingsParam struct {
-	MarketID            string `url:"-"`
-	EffectiveBeforeOrAt string `url:"effectiveBeforeOrAt,omitempty"`
+	Market              string `json:"-"`
+	EffectiveBeforeOrAt string `json:"effectiveBeforeOrAt,omitempty"`
 }
