@@ -30,7 +30,7 @@ func (p *Private) post(endpoint string, data interface{}) ([]byte, error) {
 }
 
 func (p *Private) delete(endpoint string, params url.Values) ([]byte, error) {
-	return p.request(http.MethodGet, helpers.GenerateQueryPath(endpoint, params), "")
+	return p.request(http.MethodDelete, helpers.GenerateQueryPath(endpoint, params), "")
 }
 
 func (p *Private) request(method, endpoint string, data string) ([]byte, error) {
