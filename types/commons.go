@@ -56,6 +56,11 @@ const (
 )
 
 const (
+	LONG  = "LONG"
+	SHORT = "SHORT"
+)
+
+const (
 	TimeInForceGtt = "GTT"
 	TimeInForceFok = "FOK"
 	TimeInForceIoc = "IOC"

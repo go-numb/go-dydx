@@ -206,9 +206,18 @@ RESTART:
 				}
 
 			case MARKETS:
-				if err := json.Unmarshal(data, &res.Markets); err != nil {
-					l.Printf("[WARN]: cant unmarshal orderbook %+v", err)
+				if err := json.Unmarshal([]byte(data), &res.Markets); err != nil {
+					l.Printf("[WARN]: cant unmarshal markets %+v", err)
 					continue
+				}
+				// handle case where market data response if keys differently in json payload after inital connection
+				if len(res.Markets.Markets) == 0 {
+					var marketData map[string]public.Market
+					if err := json.Unmarshal([]byte(data), &marketData); err != nil {
+						l.Printf("[WARN]: cant unmarshal markets %+v", err)
+						continue
+					}
+					res.Markets.Markets = marketData
 				}
 
 			case TRADES:
