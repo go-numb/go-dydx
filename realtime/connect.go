@@ -58,6 +58,8 @@ type Response struct {
 	Markets   public.MarketsResponse   `json:"-"`
 	Trades    public.TradesResponse    `json:"-"`
 	Orderbook public.OrderbookResponse `json:"-"`
+	Fills     private.FillsResponse    `json:"-"`
+	Positions private.PositionResponse `json:"-"`
 
 	Results error
 }
@@ -67,6 +69,8 @@ type Account struct {
 	private.AccountResponse
 	private.TransfersResponse
 	private.FundingPaymentsResponse
+	private.FillsResponse
+	private.PositionResponse
 }
 
 func subscribe(conn *websocket.Conn, private *private.Private, channels, symbols []string) error {
