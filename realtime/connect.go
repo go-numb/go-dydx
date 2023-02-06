@@ -67,6 +67,8 @@ type Account struct {
 	private.AccountResponse
 	private.TransfersResponse
 	private.FundingPaymentsResponse
+	private.FillsResponse
+	private.PositionResponse
 }
 
 func subscribe(conn *websocket.Conn, private *private.Private, channels, symbols []string) error {
