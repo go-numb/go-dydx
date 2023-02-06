@@ -58,8 +58,6 @@ type Response struct {
 	Markets   public.MarketsResponse   `json:"-"`
 	Trades    public.TradesResponse    `json:"-"`
 	Orderbook public.OrderbookResponse `json:"-"`
-	Fills     private.FillsResponse    `json:"-"`
-	Positions private.PositionResponse `json:"-"`
 
 	Results error
 }
