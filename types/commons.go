@@ -46,6 +46,7 @@ const (
 const (
 	MARKET       = "MARKET"
 	LIMIT        = "LIMIT"
+	STOP         = "STOP"
 	STOPLIMIT    = "STOP_LIMIT"
 	TRAILINGSTOP = "TRAILING_STOP"
 	TAKEPROFIT   = "TAKE_PROFIT"
