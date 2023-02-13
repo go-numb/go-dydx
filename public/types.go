@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/go-numb/go-dydx/types"
+	"github.com/huangjosh/go-dydx/types"
 )
 
 type Public struct {

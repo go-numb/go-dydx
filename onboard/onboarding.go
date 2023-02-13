@@ -12,8 +12,8 @@ import (
 	ethmath "github.com/ethereum/go-ethereum/common/math"
 	solsha3 "github.com/miguelmota/go-solidity-sha3"
 
-	"github.com/go-numb/go-dydx/helpers"
-	"github.com/go-numb/go-dydx/types"
+	"github.com/huangjosh/go-dydx/helpers"
+	"github.com/huangjosh/go-dydx/types"
 )
 
 type OnBoarding struct {

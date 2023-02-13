@@ -7,7 +7,7 @@ import (
 	solsha3 "github.com/miguelmota/go-solidity-sha3"
 	"github.com/umbracle/ethgo/jsonrpc"
 
-	"github.com/go-numb/go-dydx/types"
+	"github.com/huangjosh/go-dydx/types"
 )
 
 var (

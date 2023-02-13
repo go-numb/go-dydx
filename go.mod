@@ -1,4 +1,4 @@
-module github.com/go-numb/go-dydx
+module github.com/huangjosh/go-dydx
 
 go 1.18
 
