@@ -1,7 +1,7 @@
 package private
 
 import (
-	"log"
+	"github.com/sirupsen/logrus"
 	"net/url"
 	"strconv"
 	"time"
@@ -17,7 +17,7 @@ type Private struct {
 	ApiKeyCredentials *types.ApiKeyCredentials
 
 	RateLimit *types.RateLimit
-	Logger    *log.Logger
+	Logger    *logrus.Entry
 }
 
 type ApiBaseOrder struct {

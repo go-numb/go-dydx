@@ -4,7 +4,7 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
-	"log"
+	"github.com/sirupsen/logrus"
 	"math/big"
 	"strings"
 
@@ -24,7 +24,7 @@ type OnBoarding struct {
 	StarkPublicKey            string
 	StarkPublicKeyYCoordinate string
 	Singer                    *helpers.SignOnboardingAction
-	Logger                    *log.Logger
+	Logger                    *logrus.Entry
 }
 
 type ApiKeyCredentials struct {
