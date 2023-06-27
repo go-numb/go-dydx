@@ -44,12 +44,14 @@ const (
 )
 
 const (
-	MARKET       = "MARKET"
-	LIMIT        = "LIMIT"
-	STOP         = "STOP"
-	STOPLIMIT    = "STOP_LIMIT"
-	TRAILINGSTOP = "TRAILING_STOP"
-	TAKEPROFIT   = "TAKE_PROFIT"
+	MARKET           = "MARKET"
+	LIMIT            = "LIMIT"
+	STOP             = "STOP"
+	STOPLIMIT        = "STOP_LIMIT"
+	STOPMARKET       = "STOP_MARKET"
+	TRAILINGSTOP     = "TRAILING_STOP"
+	TAKEPROFIT       = "TAKE_PROFIT"
+	TAKEPROFITMARKET = "TAKE_PROFIT_MARKET"
 )
 
 const (
