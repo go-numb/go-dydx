@@ -39,6 +39,7 @@ type ApiOrder struct {
 	TriggerPrice    string `json:"triggerPrice,omitempty"`
 	TrailingPercent string `json:"trailingPercent,omitempty"`
 	PostOnly        bool   `json:"postOnly"`
+	ReduceOnly      bool   `json:"reduceOnly"`
 }
 
 type UsersResponse struct {
