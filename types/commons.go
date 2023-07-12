@@ -1,6 +1,8 @@
 package types
 
 import (
+	"log"
+	"net/http"
 	"strconv"
 
 	"github.com/umbracle/ethgo/jsonrpc"
@@ -96,7 +98,9 @@ type Options struct {
 	StarkPublicKeyYCoordinate string
 	ApiKeyCredentials         *ApiKeyCredentials
 
-	Web3 *jsonrpc.Client
+	Web3       *jsonrpc.Client
+	HttpClient *http.Client
+	Logger     *log.Logger
 }
 
 type ApiKeyCredentials struct {

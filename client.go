@@ -2,17 +2,17 @@ package dydx
 
 import (
 	"log"
+	"net/http"
 	"os"
 	"strings"
 	"time"
-
-	"github.com/go-numb/go-dydx/types"
-	"github.com/umbracle/ethgo/jsonrpc"
 
 	"github.com/go-numb/go-dydx/helpers"
 	"github.com/go-numb/go-dydx/onboard"
 	"github.com/go-numb/go-dydx/private"
 	"github.com/go-numb/go-dydx/public"
+	"github.com/go-numb/go-dydx/types"
+	"github.com/umbracle/ethgo/jsonrpc"
 )
 
 type Client struct {
@@ -35,6 +35,8 @@ type Client struct {
 	OnBoarding *onboard.OnBoarding
 
 	Logger *log.Logger
+
+	httpClient *http.Client
 }
 
 func New(options types.Options) *Client {
@@ -45,8 +47,13 @@ func New(options types.Options) *Client {
 		StarkPublicKey:    options.StarkPublicKey,
 		StarkPrivateKey:   options.StarkPrivateKey,
 		ApiKeyCredentials: options.ApiKeyCredentials,
+		NetworkId:         options.NetworkId,
 
 		Logger: log.New(os.Stderr, "go-dydx ", log.LstdFlags),
+
+		httpClient: &http.Client{
+			Timeout: time.Second * 5,
+		},
 	}
 
 	if options.Web3 != nil {
@@ -70,6 +77,14 @@ func New(options types.Options) *Client {
 		client.EthSigner = &helpers.EthKeySinger{PrivateKey: options.StarkPrivateKey}
 	}
 
+	if options.HttpClient != nil {
+		client.httpClient = options.HttpClient
+	}
+
+	if options.Logger != nil {
+		client.Logger = options.Logger
+	}
+
 	client.OnBoarding = &onboard.OnBoarding{
 		Host:       client.Host,
 		EthSigner:  client.EthSigner,
@@ -89,15 +104,17 @@ func New(options types.Options) *Client {
 		DefaultAddress:    client.DefaultAddress,
 		ApiKeyCredentials: client.ApiKeyCredentials,
 
-		RateLimit: new(types.RateLimit),
-		Logger:    client.Logger,
+		RateLimit:  new(types.RateLimit),
+		Logger:     client.Logger,
+		HttpClient: client.httpClient,
 	}
 	client.Public = &public.Public{
 		Host:      client.Host,
 		NetworkId: client.NetworkId,
 
-		RateLimit: new(types.RateLimit),
-		Logger:    client.Logger,
+		RateLimit:  new(types.RateLimit),
+		Logger:     client.Logger,
+		HttpClient: client.httpClient,
 	}
 
 	return client

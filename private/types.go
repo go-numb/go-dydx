@@ -2,6 +2,7 @@ package private
 
 import (
 	"log"
+	"net/http"
 	"net/url"
 	"strconv"
 	"time"
@@ -16,8 +17,9 @@ type Private struct {
 	DefaultAddress    string
 	ApiKeyCredentials *types.ApiKeyCredentials
 
-	RateLimit *types.RateLimit
-	Logger    *log.Logger
+	RateLimit  *types.RateLimit
+	Logger     *log.Logger
+	HttpClient *http.Client
 }
 
 type ApiBaseOrder struct {

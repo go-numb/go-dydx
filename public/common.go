@@ -4,13 +4,11 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/go-numb/go-dydx/helpers"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
-	"time"
-
-	"github.com/go-numb/go-dydx/helpers"
 )
 
 func (p *Public) get(endpoint string, params url.Values) ([]byte, error) {
@@ -68,8 +66,5 @@ func (p *Public) execute(method string, requestPath string, headers map[string]s
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("User-Agent", "go-dydx")
 
-	c := &http.Client{
-		Timeout: time.Second * 5,
-	}
-	return c.Do(req)
+	return p.HttpClient.Do(req)
 }
