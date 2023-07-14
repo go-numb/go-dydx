@@ -17,9 +17,9 @@ type Private struct {
 	DefaultAddress    string
 	ApiKeyCredentials *types.ApiKeyCredentials
 
+	HttpClient *http.Client
 	RateLimit  *types.RateLimit
 	Logger     *log.Logger
-	HttpClient *http.Client
 }
 
 type ApiBaseOrder struct {
