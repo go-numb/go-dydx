@@ -2,6 +2,7 @@ package private
 
 import (
 	"log"
+	"net/http"
 	"net/url"
 	"strconv"
 	"time"
@@ -16,8 +17,9 @@ type Private struct {
 	DefaultAddress    string
 	ApiKeyCredentials *types.ApiKeyCredentials
 
-	RateLimit *types.RateLimit
-	Logger    *log.Logger
+	HttpClient *http.Client
+	RateLimit  *types.RateLimit
+	Logger     *log.Logger
 }
 
 type ApiBaseOrder struct {
@@ -39,7 +41,6 @@ type ApiOrder struct {
 	TriggerPrice    string `json:"triggerPrice,omitempty"`
 	TrailingPercent string `json:"trailingPercent,omitempty"`
 	PostOnly        bool   `json:"postOnly"`
-	ReduceOnly      bool   `json:"reduceOnly"`
 }
 
 type UsersResponse struct {

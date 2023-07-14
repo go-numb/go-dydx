@@ -79,10 +79,7 @@ func (p *Private) execute(method string, requestPath string, headers map[string]
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("User-Agent", "go-dydx")
 
-	c := &http.Client{
-		Timeout: 5 * time.Second,
-	}
-	return c.Do(req)
+	return p.HttpClient.Do(req)
 
 }
 

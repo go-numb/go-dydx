@@ -3,6 +3,7 @@ package public
 import (
 	"encoding/json"
 	"log"
+	"net/http"
 	"time"
 
 	"github.com/go-numb/go-dydx/types"
@@ -12,8 +13,9 @@ type Public struct {
 	Host      string
 	NetworkId int
 
-	RateLimit *types.RateLimit
-	Logger    *log.Logger
+	RateLimit  *types.RateLimit
+	Logger     *log.Logger
+	HttpClient *http.Client
 }
 
 type MarketsResponse struct {
