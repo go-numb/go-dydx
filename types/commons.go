@@ -1,8 +1,6 @@
 package types
 
 import (
-	"log"
-	"net/http"
 	"strconv"
 
 	"github.com/umbracle/ethgo/jsonrpc"
@@ -46,12 +44,14 @@ const (
 )
 
 const (
-	MARKET       = "MARKET"
-	LIMIT        = "LIMIT"
-	STOP         = "STOP"
-	STOPLIMIT    = "STOP_LIMIT"
-	TRAILINGSTOP = "TRAILING_STOP"
-	TAKEPROFIT   = "TAKE_PROFIT"
+	MARKET           = "MARKET"
+	LIMIT            = "LIMIT"
+	STOP             = "STOP"
+	STOPLIMIT        = "STOP_LIMIT"
+	STOPMARKET       = "STOP_MARKET"
+	TRAILINGSTOP     = "TRAILING_STOP"
+	TAKEPROFIT       = "TAKE_PROFIT"
+	TAKEPROFITMARKET = "TAKE_PROFIT_MARKET"
 )
 
 const (
@@ -98,9 +98,7 @@ type Options struct {
 	StarkPublicKeyYCoordinate string
 	ApiKeyCredentials         *ApiKeyCredentials
 
-	Web3       *jsonrpc.Client
-	HttpClient *http.Client
-	Logger     *log.Logger
+	Web3 *jsonrpc.Client
 }
 
 type ApiKeyCredentials struct {
