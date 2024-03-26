@@ -3,6 +3,7 @@ package dydx
 import (
 	"log"
 	"net/http"
+	"net/url"
 	"os"
 	"strings"
 	"time"
@@ -54,6 +55,14 @@ func New(options types.Options) *Client {
 		httpClient: &http.Client{
 			Timeout: time.Second * 5,
 		},
+	}
+
+	// Add http proxy support.
+	if os.Getenv("HTTP_PROXY") != "" {
+		proxy, _ := url.Parse(os.Getenv("HTTP_PROXY"))
+		client.httpClient.Transport = &http.Transport{
+			Proxy: http.ProxyURL(proxy),
+		}
 	}
 
 	if options.Web3 != nil {
